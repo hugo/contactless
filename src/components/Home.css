@@ -1,0 +1,17 @@
+.Home {
+  height: 100%;
+  background-color: #4183d7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home--Content {
+  text-align: center;
+}
+
+.Home--Title,
+.Home--Subtitle {
+  display: block;
+  color: #fff;
+}

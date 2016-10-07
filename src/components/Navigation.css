@@ -1,0 +1,31 @@
+.Navigation {
+  background-color: #446cb3;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.Navigation--Links {
+  max-width: 640px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.Navigation--Link {
+  text-align: center;
+  display: block;
+  padding: 1rem 2.5rem;
+  border-left: 1px solid #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+.Navigation--Link:last-child {
+  border-right: 1px solid #000;
+}
+
+.Navigation--Link:hover {
+  background-color: #59abe3;
+  text-decoration: none;
+}

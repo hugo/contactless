@@ -1,0 +1,31 @@
+.ContactPreview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  text-decoration: none;
+  color: #34495e;
+}
+
+.ContactPreview:hover {
+  background-color: #2980b9;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ContactPreview--selected {
+  background-color: #2980b9;
+}
+
+.ContactPreview--Details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ContactPreview--Avatar {
+  text-align: center;
+  border-radius: 50%;
+  margin: 1rem;
+}

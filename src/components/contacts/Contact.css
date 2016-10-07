@@ -1,0 +1,34 @@
+.Contact {
+  flex: 1;
+  padding: 1rem;
+  background-color: #c5eff7;
+}
+
+.Contact--Header {
+  border-bottom: 1px solid #000;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.Contact--Details {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Contact--Name--FullName {
+  font-size: 2rem;
+}
+
+.Contact--Details--Detail {
+  border-bottom: 1px solid #000;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Contact--Details--DetailTitle {
+  font-size: 1.2rem;
+}
+
+.Contact--Details--Avatar {
+  border-radius: 50%;
+}

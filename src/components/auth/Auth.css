@@ -1,0 +1,10 @@
+.Auth {
+  background-color: #dcc6e0;
+  height: 100%;
+}
+
+.Auth--Section {
+  max-width: 480px;
+  margin-right: auto;
+  margin-left: auto;
+}
