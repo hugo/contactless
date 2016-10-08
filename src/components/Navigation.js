@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import SignInOrOutLink from './auth/SignInOrOutLink'
+
 import './Navigation.css'
 
 class Navigation extends React.Component {
@@ -11,11 +13,13 @@ class Navigation extends React.Component {
           <Link className="Navigation--Link" to="/">Home</Link>
           <Link className="Navigation--Link" to="/contacts">Contacts</Link>
           <Link className="Navigation--Link" to="/settings">Settings</Link>
-          {localStorage.access_token ? (
-            <Link className="Navigation--Link" to="/auth/out">Sign out</Link>
-          ) : (
-            <Link className="Navigation--Link" to="/auth/in">Sign in</Link>
-          )}
+          <SignInOrOutLink
+            className="Navigation--Link"
+            inText="Sign in"
+            inTo="/auth/in"
+            outText="Sign out"
+            outTo="/auth/out"
+          />
         </nav>
       </div>
     )

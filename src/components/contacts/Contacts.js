@@ -1,9 +1,11 @@
 import React from 'react'
-import { Match } from 'react-router'
+import { Link, Match, Miss } from 'react-router'
 
 import Contact from './Contact'
 import Sidebar from './Sidebar'
 import SubApp from '../SubApp'
+
+import './Contacts.css'
 
 const getContacts = () => fetch(`${localStorage.apiEndpoint}/contacts`, {
   headers: {
@@ -73,11 +75,28 @@ class Contacts extends React.Component {
           />
         )}
         subapp={() => (
-          <Match pattern={`${pathname}/:id`} render={({ params: { id } }) => (
-            <Contact contact={this.state.contacts.filter(contact => (
-              contact.id.endsWith(id)
-            ))[0]} />
-           )} />
+          <div className="Contacts">
+            <Match exactly pattern={`${pathname}`} render={() => (
+              <div className="Contacts--Dashboard">
+                <p>Select a contact to view their details.</p>
+                <Link className="Button Button--success" to={`${pathname}/new`}>
+                  Add contact
+                </Link>
+              </div>
+            )} />
+
+            <Match exactly pattern={`${pathname}/:id`} render={({ params: { id } }) => (
+              <div className="Contacts--Section">
+                <Match pattern={`${pathname}/new`} render={() => (<p>New</p>)} />
+
+                <Miss render={() => (
+                  <Contact contact={this.state.contacts.filter(contact => (
+                    contact.id.endsWith(id)
+                  ))[0]} />
+                )} />
+              </div>
+             )} />
+          </div>
         )}
         title="Contacts"
       />

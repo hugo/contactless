@@ -1,0 +1,14 @@
+.Contacts {
+  flex: 1;
+  display: flex;
+  background-color: #fde3a7;
+}
+
+.Contacts--Dashboard {
+  padding: 1rem;
+}
+
+.Contacts--Section {
+  flex: 1;
+  display: flex;
+}

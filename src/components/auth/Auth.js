@@ -26,7 +26,11 @@ class Auth extends React.Component {
   exchangeCodeForToken = (code) => {
     this.getOAuthToken(code).then(json => {
       if (json.access_token) {
-        localStorage['access_token'] = json.access_token
+        const expires = new Date();
+        expires.setSeconds(expires.getSeconds() + json.expires_in)
+        localStorage.tokenExpiry = expires
+        localStorage.refreshToken = json.refresh_token
+        localStorage.access_token = json.access_token
         this.setState({ isAuthed: true })
         this.props.router.transitionTo('/auth')
       } else {
@@ -57,6 +61,7 @@ class Auth extends React.Component {
   signOut = (evt) => {
     evt.preventDefault()
     delete localStorage['access_token']
+    delete localStorage['tokenExpiry']
     this.setState({ isAuthed: false })
     const { router } = this.props
     router.transitionTo('/auth')
@@ -75,7 +80,10 @@ class Auth extends React.Component {
         ) : (
           <div className="Auth--Section">
             <Match exactly pattern={`${pathname}`} render={() => (
-              <h2>Authorization</h2>
+              <div>
+                <h2>Authorization</h2>
+                <p>Auth stuff goes here</p>
+              </div>
             )} />
 
             <Match pattern={`${pathname}/in`} render={() => (

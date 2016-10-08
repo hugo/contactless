@@ -113,3 +113,20 @@ body {
 .Button--danger:hover {
   background-color: #e74c3c
 }
+
+.Pill {
+  font-size: .75rem;
+  padding: .125rem;
+  border-radius: .25rem;
+  margin-right: .25rem;
+}
+
+.Pill--success {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.Pill--primary {
+  background-color: #9b59b6;
+  color: #fff;
+}

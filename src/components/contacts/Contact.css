@@ -32,3 +32,22 @@
 .Contact--Details--Avatar {
   border-radius: 50%;
 }
+
+.Contact--Addresses {
+  display: flex;
+}
+
+.Contact--Address {
+  flex: 1;
+}
+
+.Contact--Address--Meta {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #000;
+}
+
+.Contact--Address--Parts {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
