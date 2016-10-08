@@ -17,11 +17,11 @@ class App extends React.Component {
 
         <Match exactly pattern="/" component={Home} />
 
-        <Match pattern="/auth" render={({ pathname, location }) =>(
+        <Match pattern="/auth" render={({ pathname, location }) => (
           <Auth pathname={pathname} location={location} router={router} />
         )}/>
 
-        <Match pattern="/contacts" render={({ pathname }) =>(
+        <Match pattern="/contacts" render={({ pathname }) => (
           <Contacts pathname={pathname} />
         )}/>
 
