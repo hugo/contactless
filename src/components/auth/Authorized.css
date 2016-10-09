@@ -1,0 +1,19 @@
+.Authorized {
+  flex: 1;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.Authorized--unauthorized {
+  background-color: #f1a9a0;
+}
+
+.Authorized--Unauthorized--Title {
+  color: #f22613;
+}
+
+.Authorized--Unauthorized--Message {
+  color: #f22613;
+}

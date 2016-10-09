@@ -14,6 +14,7 @@ class Navigation extends React.Component {
           <Link className="Navigation--Link" to="/contacts">Contacts</Link>
           <Link className="Navigation--Link" to="/settings">Settings</Link>
           <SignInOrOutLink
+            authed={this.props.authed}
             className="Navigation--Link"
             inText="Sign in"
             inTo="/auth/in"

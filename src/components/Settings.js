@@ -32,9 +32,6 @@ class Settings extends React.Component {
   state = { apiEndpoint: '', access_token: '', saving: false }
 
   componentWillMount() {
-    if (localStorage['access_token']) {
-      this.setState({ access_token: localStorage['access_token'] })
-    }
     if (localStorage['apiEndpoint']) {
       this.setState({ apiEndpoint: localStorage['apiEndpoint'] })
     }
@@ -42,7 +39,6 @@ class Settings extends React.Component {
 
   saveSettings = () => {
     this.setState({ saving: true })
-    localStorage['access_token'] = this.state.access_token
     localStorage['apiEndpoint'] = this.state.apiEndpoint
     setTimeout(() => {
       this.setState({ saving: false })
@@ -72,13 +68,6 @@ class Settings extends React.Component {
               label="API endpoint"
               didChangeInput={this.handleChange}
               value={this.state.apiEndpoint}
-            />
-            <SettingsItem
-              disabled={this.state.saving}
-              field="access_token"
-              label="Access token"
-              didChangeInput={this.handleChange}
-              value={this.state.access_token}
             />
 
             <button

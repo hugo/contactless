@@ -16,22 +16,17 @@ class Auth extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ error: false })
-    const { location: { query } } = nextProps
-    if (query && query.code) {
-      this.exchangeCodeForToken(query.code)
-    }
+    // this.setState({ error: false })
+    // const { location: { query } } = nextProps
+    // if (query && query.code) {
+    //   this.exchangeCodeForToken(query.code)
+    // }
   }
 
   exchangeCodeForToken = (code) => {
     this.getOAuthToken(code).then(json => {
       if (json.access_token) {
-        const expires = new Date();
-        expires.setSeconds(expires.getSeconds() + json.expires_in)
-        localStorage.tokenExpiry = expires
-        localStorage.refreshToken = json.refresh_token
-        localStorage.access_token = json.access_token
-        this.setState({ isAuthed: true })
+        this.props.authService.signIn(json)
         this.props.router.transitionTo('/auth')
       } else {
         this.setState({ error: 'Google OAuth failed, sorry'})
@@ -60,11 +55,10 @@ class Auth extends React.Component {
 
   signOut = (evt) => {
     evt.preventDefault()
-    delete localStorage['access_token']
-    delete localStorage['tokenExpiry']
-    this.setState({ isAuthed: false })
-    const { router } = this.props
-    router.transitionTo('/auth')
+    this.props.authService.signOut().then(() => {
+      this.setState({ isAuthed: false })
+      this.props.router.transitionTo('/auth')
+    })
   }
 
   render() {

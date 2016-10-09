@@ -7,14 +7,6 @@ import SubApp from '../SubApp'
 
 import './Contacts.css'
 
-const getContacts = () => fetch(`${localStorage.apiEndpoint}/contacts`, {
-  headers: {
-    'Authorization': `Bearer ${localStorage.access_token}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-}).then(res => res.json())
-
 const addContact = (contact) => fetch(`${localStorage.apiEndpoint}contacts/add`, {
   headers: {
     'Authorization': `Bearer ${localStorage.access_token}`,
@@ -46,7 +38,7 @@ class Contacts extends React.Component {
 
   loadContacts = () => {
     this.setState({ loading: true, saving: false })
-    getContacts().then(json => {
+    this.props.getContacts().then(json => {
       if (json.contacts) {
         // fake slow connection
         setTimeout(() => {
