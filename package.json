@@ -5,8 +5,8 @@
   "private": true,
   "licence": "MIT",
   "devDependencies": {
-    "electron": "^1.4.3",
     "history": "^4.3.0",
+    "pushstate-server": "^2.1.0",
     "react-router": "^4.0.0-alpha.4",
     "react-scripts": "0.6.1"
   },
@@ -15,10 +15,10 @@
     "react-dom": "^15.3.2"
   },
   "scripts": {
+    "now-start": "pushstate-server build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
+    "eject": "react-scripts eject"
   }
 }

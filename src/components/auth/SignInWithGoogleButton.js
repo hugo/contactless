@@ -3,12 +3,7 @@ import React from 'react'
 class SignInWithGoogleButton extends React.Component {
   state = { uri: null }
 
-  getOAuthLink = () => fetch('http://localhost:4000/auth', {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }).then(res => res.json())
+  getOAuthLink = () => fetch(`${localStorage.apiEndpoint}/auth}`).then(res => res.json())
 
   componentDidMount() {
     this.getOAuthLink().then(json => {

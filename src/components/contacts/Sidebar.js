@@ -2,6 +2,8 @@ import React from 'react'
 
 import ContactPreview from './ContactPreview'
 
+import './Sidebar.css'
+
 class Sidebar extends React.Component {
   render() {
     const { contacts = [], onDeleteContact, pathname } = this.props

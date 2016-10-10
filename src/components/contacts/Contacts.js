@@ -2,38 +2,38 @@ import React from 'react'
 import { Link, Match, Miss } from 'react-router'
 
 import Contact from './Contact'
+import ContactForm from './ContactForm.js'
 import Sidebar from './Sidebar'
 import SubApp from '../SubApp'
 
 import './Contacts.css'
 
-const addContact = (contact) => fetch(`${localStorage.apiEndpoint}contacts/add`, {
-  headers: {
-    'Authorization': `Bearer ${localStorage.access_token}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  method: 'POST',
-  body: JSON.stringify(contact),
-}) //.then(res => res.json())
-
 class Contacts extends React.Component {
   state = { contacts: [], loading: true, currentContact: null }
 
-  addContact = () => {
+  saveContact = (contact) => {
     this.setState({ saving: true })
-    addContact({}).then(() => {
+    this.props.saveContact(contact).then(() => {
       setTimeout(() => {
+        this.setState({ saving: false })
+        this.props.router.transitionTo('/contacts')
         this.loadContacts()
-      }, 0) // Allow API to update
+      }, 500)
+    }, err => {
+      this.setState({ error: err.message, saving: false })
     })
   }
 
-  onDeleteContact = () => {
+  deleteContact = (uri, etag) => {
     this.setState({ saving: true })
-    setTimeout(() => {
-      this.loadContacts()
-    }, 0) // Allow API to update
+    const { deleteContact, router } = this.props
+    deleteContact(uri, etag).then(() => {
+      setTimeout(() => {
+        this.setState({ saving: false })
+        router.transitionTo('/contacts')
+        this.loadContacts()
+      }, 500) // Allow API to update
+    })
   }
 
   loadContacts = () => {
@@ -44,7 +44,7 @@ class Contacts extends React.Component {
         setTimeout(() => {
           this.setState({ loading: false })
           this.setState({ contacts: json.contacts })
-        }, 0)
+        }, 500)
       } else {
         console.log('Failed to load contacts')
       }
@@ -79,12 +79,14 @@ class Contacts extends React.Component {
 
             <Match exactly pattern={`${pathname}/:id`} render={({ params: { id } }) => (
               <div className="Contacts--Section">
-                <Match pattern={`${pathname}/new`} render={() => (<p>New</p>)} />
+                <Match pattern={`${pathname}/new`} render={() => (
+                  <ContactForm saveContact={this.saveContact} />
+                )} />
 
                 <Miss render={() => (
                   <Contact contact={this.state.contacts.filter(contact => (
                     contact.id.endsWith(id)
-                  ))[0]} />
+                  ))[0]} deleteContact={this.deleteContact} />
                 )} />
               </div>
              )} />
@@ -97,3 +99,4 @@ class Contacts extends React.Component {
 }
 
 export default Contacts
+

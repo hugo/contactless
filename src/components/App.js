@@ -12,13 +12,13 @@ import Authorized from './auth/Authorized.js'
 
 const authService = new AuthService();
 
-const getContacts = () => fetch(`${localStorage.apiEndpoint}/contacts`, {
-  headers: {
-    'Authorization': `Bearer ${authService.getToken()}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-}).then(res => res.json())
+const API_HOST = localStorage.apiEndpoint
+
+import api from '../api.js'
+
+const getContacts = api.getContacts(API_HOST, authService)
+const saveContact = api.saveContact(API_HOST, authService)
+const deleteContact = api.deleteContact(API_HOST, authService)
 
 class App extends React.Component {
   state = { isAuthed: false }
@@ -54,7 +54,13 @@ class App extends React.Component {
 
         <Match pattern="/contacts" render={({ pathname }) => (
           <Authorized authService={authService}>
-            <Contacts getContacts={getContacts} pathname={pathname} />
+            <Contacts
+              deleteContact={deleteContact}
+              getContacts={getContacts}
+              saveContact={saveContact}
+              pathname={pathname}
+              router={router}
+            />
           </Authorized>
         )}/>
 

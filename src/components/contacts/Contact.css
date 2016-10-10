@@ -2,6 +2,7 @@
   flex: 1;
   padding: 1rem;
   background-color: #c5eff7;
+  overflow-y: scroll;
 }
 
 .Contact--Header {

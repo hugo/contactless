@@ -38,12 +38,15 @@ body {
 .App--Container {
   height: 100%;
   display: flex;
+  overflow: hidden;
 }
 
 .Sidebar {
+  height: 100%;
   width: 25%;
   word-wrap: break-word;
   background-color: #3498db;
+  overflow: hidden;
 }
 
 .Sidebar--Header {
@@ -64,10 +67,6 @@ body {
   display: flex;
 }
 
-.ContactsList {
-  width: 100%;
-}
-
 .Button {
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -77,6 +76,10 @@ body {
   -webkit-appearance: none;
   border: 0;
   cursor: pointer;
+}
+
+.Button--small {
+  padding: .5rem 1rem;
 }
 
 .Button:hover {

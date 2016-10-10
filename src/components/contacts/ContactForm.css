@@ -1,0 +1,37 @@
+.ContactForm {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.ContactForm--Form {
+  width: 480px;
+  padding: 1rem;
+  border: 2px solid #ccc;
+}
+
+.ContactForm--Field {
+  padding: .5rem;
+}
+
+.ContactForm--Field--Label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ContactForm--Field--Input {
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+  border: 1px solid #eee;
+  outline: 0;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.ContactForm--Controls {
+  padding-top: .5rem;
+}
