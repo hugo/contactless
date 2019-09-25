@@ -7,7 +7,7 @@
   "devDependencies": {
     "history": "^4.3.0",
     "pushstate-server": "^2.1.0",
-    "react-router": "^4.0.0-alpha.4",
+    "react-router": "^5.1.0",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
