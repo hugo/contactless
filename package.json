@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "react": "^16.12.0",
-    "react-dom": "^15.3.2"
+    "react-dom": "^16.12.0"
   },
   "scripts": {
     "now-start": "pushstate-server build",
