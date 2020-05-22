@@ -1,5 +1,5 @@
 import React from 'react'
-import { Match } from 'react-router'
+import { Route, withRouter } from 'react-router-dom'
 
 import SignInWithGoogleButton from './SignInWithGoogleButton'
 
@@ -13,14 +13,6 @@ class Auth extends React.Component {
     if (query && query.code) {
       this.exchangeCodeForToken(query.code)
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // this.setState({ error: false })
-    // const { location: { query } } = nextProps
-    // if (query && query.code) {
-    //   this.exchangeCodeForToken(query.code)
-    // }
   }
 
   exchangeCodeForToken = (code) => {
@@ -57,13 +49,13 @@ class Auth extends React.Component {
     evt.preventDefault()
     this.props.authService.signOut().then(() => {
       this.setState({ isAuthed: false })
-      this.props.router.transitionTo('/auth')
+      this.props.history.push('/auth')
     })
   }
 
   render() {
-    const { pathname } = this.props
     const { error } = this.state
+
     return (
       <div className="Auth">
         {error ? (
@@ -73,21 +65,21 @@ class Auth extends React.Component {
           </div>
         ) : (
           <div className="Auth--Section">
-            <Match exactly pattern={`${pathname}`} render={() => (
+            <Route exact path="/auth" render={() => (
               <div>
                 <h2>Authorization</h2>
                 <p>Auth stuff goes here</p>
               </div>
             )} />
 
-            <Match pattern={`${pathname}/in`} render={() => (
+            <Route path="/auth/in" render={() => (
               <div>
                 <h2>Sign in with Google</h2>
                 <SignInWithGoogleButton />
               </div>
             )} />
 
-            <Match pattern={`${pathname}/out`} render={() => (
+            <Route path="/auth/out" render={() => (
               <div>
                 <h2>Sign out</h2>
                 <button
@@ -106,4 +98,4 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth
+export default withRouter(Auth)

@@ -4,7 +4,6 @@ class SubApp extends React.Component {
 
   render() {
     const {
-      pathname,
       sidebar: SidebarComponent,
       subapp: SubAppComponent,
       title
@@ -18,10 +17,10 @@ class SubApp extends React.Component {
               {title}
             </h2>
           </div>
-          <SidebarComponent pathname={pathname} />
+          <SidebarComponent />
         </div>
         <div className="SubApp">
-          <SubAppComponent pathname={pathname} />
+          <SubAppComponent />
         </div>
       </div>
     )

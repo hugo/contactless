@@ -6,14 +6,13 @@ import './Sidebar.css'
 
 class Sidebar extends React.Component {
   render() {
-    const { contacts = [], onDeleteContact, pathname } = this.props
+    const { contacts = [], onDeleteContact } = this.props
 
     return (
       <div className="ContactsList">
         {contacts.map((contact, i) => (
           <ContactPreview
             key={i}
-            pathname={pathname}
             contact={contact}
             onDeleteContact={onDeleteContact}
           />

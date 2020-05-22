@@ -31,7 +31,7 @@ class SettingsItem extends React.Component {
 class Settings extends React.Component {
   state = { apiEndpoint: '', access_token: '', saving: false }
 
-  componentWillMount() {
+  componentDidMount() {
     if (localStorage['apiEndpoint']) {
       this.setState({ apiEndpoint: localStorage['apiEndpoint'] })
     }

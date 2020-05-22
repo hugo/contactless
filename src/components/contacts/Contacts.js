@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Match, Miss } from 'react-router'
+import { Link, Switch, Route } from 'react-router-dom'
 
 import Contact from './Contact'
 import ContactForm from './ContactForm.js'
@@ -56,40 +56,39 @@ class Contacts extends React.Component {
   }
 
   render() {
-    const { pathname } = this.props
-
     return (
       <SubApp
         sidebar={() => (
           <Sidebar
             contacts={this.state.contacts}
-            pathname={pathname}
           />
         )}
         subapp={() => (
           <div className="Contacts">
-            <Match exactly pattern={`${pathname}`} render={() => (
-              <div className="Contacts--Dashboard">
-                <p>Select a contact to view their details.</p>
-                <Link className="Button Button--success" to={`${pathname}/new`}>
-                  Add contact
-                </Link>
-              </div>
-            )} />
+            <Switch>
+              <Route exact path="/contacts" render={() => (
+                <div className="Contacts--Dashboard">
+                  <p>Select a contact to view their details.</p>
+                  <Link className="Button Button--success" to={`/contacts/new`}>
+                    Add contact
+                  </Link>
+                </div>
+              )} />
 
-            <Match exactly pattern={`${pathname}/:id`} render={({ params: { id } }) => (
-              <div className="Contacts--Section">
-                <Match pattern={`${pathname}/new`} render={() => (
-                  <ContactForm saveContact={this.saveContact} />
-                )} />
+              <Route path={`/contacts/new`} render={() => (
+                <ContactForm saveContact={this.saveContact} />
+              )} />
 
-                <Miss render={() => (
+              <Route exact path={`/contacts/:id`} render={({ match: {params: { id } } }) => (
+                <div className="Contacts--Section">
                   <Contact contact={this.state.contacts.filter(contact => (
-                    contact.id.endsWith(id)
-                  ))[0]} deleteContact={this.deleteContact} />
-                )} />
-              </div>
-             )} />
+                        contact.id.endsWith(id)
+                    ))[0]}
+                    deleteContact={this.deleteContact}
+                  />
+                </div>
+              )} />
+            </Switch>
           </div>
         )}
         title="Contacts"
