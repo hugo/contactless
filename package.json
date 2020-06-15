@@ -5,7 +5,7 @@
   "private": true,
   "licence": "MIT",
   "devDependencies": {
-    "history": "^4.3.0",
+    "history": "^5.0.0",
     "pushstate-server": "^3.1.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
